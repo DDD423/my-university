@@ -184,6 +184,51 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ---------------- 登录弹窗样式 ---------------- */
+        .modal-overlay {
+            display: none; /* 默认隐藏 */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(4px); /* 背景模糊效果 */
+        }
+        .modal-content {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 8px;
+            width: 100%; max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideDown 0.3s ease-out;
+        }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px;
+            font-size: 1.5rem; color: #999; cursor: pointer; transition: color 0.2s;
+        }
+        .close-btn:hover { color: #333; }
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #666; }
+        .input-group input {
+            width: 100%; padding: 0.8rem; border: 1px solid #ccc;
+            border-radius: 4px; font-size: 1rem; outline: none; transition: border 0.2s;
+            box-sizing: border-box; /* 确保 padding 不会撑破容器 */
+        }
+        .input-group input:focus { border-color: #8c1515; }
+        .submit-btn {
+            width: 100%; padding: 1rem; background-color: #8c1515;
+            color: white; border: none; border-radius: 4px;
+            font-size: 1.1rem; cursor: pointer; transition: background 0.2s;
+        }
+        .submit-btn:hover { background-color: #6a0f0f; }
+        .form-footer { margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: #888; cursor: pointer; }
+        .form-footer:hover { text-decoration: underline; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -303,7 +348,7 @@
             <div class="card">
                 <h3>教务与选课系统</h3>
                 <p>一键直达本学期课程表、学分管理及期末考务安排。当前已开放下学期 AP 理科及高阶编程选修课的预报名通道。</p>
-                <a class="card-btn">登录教务系统</a>
+                <a class="card-btn" onclick="openLoginModal()">登录教务系统</a>
             </div>
             <div class="card">
                 <h3>竞赛备考资源库</h3>
@@ -389,13 +434,34 @@
         </div>
     </section>
 
+    <!-- 登录弹窗 HTML 结构 -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+            <h2 style="margin-bottom: 20px; color: #8c1515; font-family: 'PingFang SC', sans-serif;">系统登录</h2>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>学号 / NetID</label>
+                    <input type="text" id="username" placeholder="请输入你的学号" required>
+                </div>
+                <div class="input-group">
+                    <label>密码</label>
+                    <input type="password" id="password" placeholder="请输入密码" required>
+                </div>
+                <button type="submit" class="submit-btn">登 录</button>
+                <p class="form-footer">忘记密码？请联系校IT服务台</p>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // 导航切换逻辑
         function showSection(sectionId) {
             // 隐藏所有内容板块
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(sec => sec.classList.remove('active'));
 
-            // 移除所有导航按钮的激活状态（包括主导航和顶部服务导航）
+            // 移除所有导航按钮的激活状态
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => btn.classList.remove('active'));
 
@@ -406,11 +472,66 @@
             if (targetSection) targetSection.classList.add('active');
             if (targetNav) targetNav.classList.add('active');
             
-            // 每次切换内容时，平滑向下滚动至内容区上方
+            // 平滑向下滚动
             window.scrollTo({
                 top: document.querySelector('.hero').offsetHeight - 80,
                 behavior: 'smooth'
             });
+        }
+
+        // 弹窗控制逻辑
+        function openLoginModal() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // ==========================================
+        // 以下是按照截图要求替换的真实后端请求逻辑
+        // ==========================================
+        async function handleLogin(event) {
+            event.preventDefault(); // 阻止表单默认刷新
+            const userVal = document.getElementById('username').value;
+            const passVal = document.getElementById('password').value;
+            const submitBtn = document.querySelector('.submit-btn');
+
+            // 登录中状态提示
+            submitBtn.innerText = "登录中...";
+            submitBtn.style.opacity = "0.7";
+
+            try {
+                // 向我们刚才写的 Python 后端发送 POST 请求
+                const response = await fetch('http://127.0.0.1:5000/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: userVal,
+                        password: passVal
+                    })
+                });
+
+                // 获取后端返回的结果
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message); // 登录成功
+                    closeLoginModal();
+                    // 未来这里可以写：window.location.href = "student_dashboard.html";
+                } else {
+                    alert(result.message); // 学号不存在或密码错误
+                }
+            } catch (error) {
+                console.error("请求后端失败:", error);
+                alert("网络连接失败，请确保后台服务器已启动！");
+            } finally {
+                // 恢复按钮状态
+                submitBtn.innerText = "登 录";
+                submitBtn.style.opacity = "1";
+            }
         }
     </script>
 </body>
