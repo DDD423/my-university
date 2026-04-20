@@ -3,63 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家里蹲大学 - 教务管理系统</title>
+    <title>戴公大学 | Daigong University</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        /* 基础样式与重置 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background-color: #fff;
         }
-        .login-box {
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 300px;
-        }
-        h1 { color: #333; font-size: 24px; }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #0056b3;
+        
+        /* 顶部导航区：模拟斯坦福的悬浮渐变黑底白字 */
+        header {
+            position: absolute;
+            top: 0; width: 100%; z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
             color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
+            padding: 1.5rem 3rem;
         }
-        button:hover { background-color: #004494; }
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+        .top-nav span { opacity: 0.8; }
+        .top-nav a { 
+            color: #f1f1f1; 
+            text-decoration: none; 
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .top-nav a:hover, .top-nav a.active { color: #fff; text-decoration: underline; font-weight: 600;}
+        
+        .main-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: "Georgia", serif; /* 校名保留一点古典感 */
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: white;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        .main-nav {
+            display: flex;
+            gap: 2.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            padding-bottom: 5px;
+            position: relative;
+        }
+        /* 导航下划线动画 */
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: 0; left: 0;
+            background-color: white;
+            transition: width 0.3s;
+        }
+        .main-nav a:hover::after, .main-nav a.active::after {
+            width: 100%;
+        }
+
+        /* 焦点图区域 (Hero Image) */
+        .hero {
+            height: 65vh;
+            background: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(0,0,0,0.3);
+        }
+        .hero-title {
+            position: relative;
+            z-index: 10;
+            font-family: "Georgia", serif;
+            font-size: 5.5rem;
+            color: white;
+            text-shadow: 0px 4px 12px rgba(0,0,0,0.6);
+            letter-spacing: 4px;
+        }
+
+        /* 内容切换区域 */
+        .content-section {
+            display: none;
+            padding: 4rem 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .content-section.active { display: block; }
+        
+        .section-header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+        .section-title {
+            font-family: "PingFang SC", sans-serif;
+            font-size: 2.5rem;
+            color: #8c1515; /* 经典的红木色/斯坦福红 */
+            font-weight: 600;
+        }
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        .card {
+            background: #fafafa;
+            padding: 2.5rem;
+            border-top: 4px solid #8c1515;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        .card h3 { 
+            font-size: 1.4rem; 
+            margin-bottom: 1rem; 
+            color: #222; 
+        }
+        .card p { 
+            color: #555; 
+            font-size: 1.05rem; 
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        .card-btn {
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background-color: transparent;
+            color: #8c1515;
+            border: 1px solid #8c1515;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+        .card-btn:hover {
+            background-color: #8c1515;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-box">
-        <h1>🎓 家里蹲大学</h1>
-        <p>统一身份认证系统</p>
-        <input type="text" placeholder="请输入学号" id="studentId">
-        <input type="password" placeholder="请输入密码" id="password">
-        <button onclick="login()">登 录</button>
-    </div>
+    <header>
+        <div class="top-nav">
+            <span>信息服务门户：</span>
+            <a onclick="showSection('students')" class="nav-btn" id="nav-students">在校学生</a>
+            <a onclick="showSection('faculty')" class="nav-btn" id="nav-faculty">教职员工</a>
+            <a onclick="showSection('families')" class="nav-btn" id="nav-families">家长与家庭</a>
+            <a onclick="showSection('visitors')" class="nav-btn" id="nav-visitors">访客导览</a>
+            <a onclick="showSection('alumni')" class="nav-btn" id="nav-alumni">校友网络</a>
+            <a onclick="alert('全站检索系统正在进行算法升级，请稍后再试。')" class="nav-btn">🔍 站内搜索</a>
+        </div>
+        <div class="main-nav-container">
+            <a onclick="showSection('academics')" class="logo">戴公大学</a>
+            <nav class="main-nav">
+                <a onclick="showSection('academics')" class="nav-btn active" id="nav-academics">学术概览</a>
+                <a onclick="showSection('research')" class="nav-btn" id="nav-research">前沿研究</a>
+                <a onclick="showSection('campus')" class="nav-btn" id="nav-campus">校园生活</a>
+                <a onclick="showSection('admission')" class="nav-btn" id="nav-admission">招生办</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 class="hero-title">戴公大学</h1>
+    </section>
+
+    <section id="academics" class="content-section active">
+        <div class="section-header">
+            <h2 class="section-title">学术概览</h2>
+            <span class="section-subtitle">探索卓越的跨学科教育体系</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>理学与数学科学学院</h3>
+                <p>提供从AP级物理力学到高阶微积分的严谨课程。本院拥有浓厚的学术竞赛文化，常年组织学生参与滑铁卢大学欧几里得及伽罗瓦数学竞赛，并屡获殊荣。</p>
+                <a class="card-btn">查看系所详情</a>
+            </div>
+            <div class="card">
+                <h3>计算机与系统工程系</h3>
+                <p>课程注重实战与底层逻辑架构。学生将熟练掌握 Python 等语言，不仅涉猎机器学习算法应用，还能利用 Pygame 独立开发从商业市场博弈到战国策略模拟的复杂数字系统。</p>
+                <a class="card-btn">浏览课程大纲</a>
+            </div>
+            <div class="card">
+                <h3>人文学科实验班</h3>
+                <p>致力于打破文化与时代的壁垒。核心课程包括对《红楼梦》与《平家物语》等中日古典名著的跨语境比较阅读，培养具有全球视野的批判性思维。</p>
+                <a class="card-btn">了解实验班培养计划</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">前沿研究</h2>
+            <span class="section-subtitle">推动改变世界的创新发现</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>人工智能创新与应用实验室</h3>
+                <p>依托斯坦福中心 AI 创新计划的资源支持，专注于大语言模型（LLMs）在垂直领域的落地，如智能知识库构建、代码生成辅助以及自动文献检索评估体系。</p>
+                <a class="card-btn">阅读最新研究报告</a>
+            </div>
+            <div class="card">
+                <h3>复杂市场行为模拟中心</h3>
+                <p>跨越经济学与计算机科学的边界，研究多方市场竞争机制。目前重点攻关项目为“四方企业动态博弈模型”，通过算法模拟股票系统与市场份额的演变。</p>
+                <a class="card-btn">参与研究项目</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="campus" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">校园生活</h2>
+            <span class="section-subtitle">发现你在戴公的无限可能</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>声学艺术与现代民谣社</h3>
+                <p>聚集了众多原声吉他爱好者。从鲍勃·迪伦的诗意抗议到开放和弦的指弹技巧，这里不仅是音乐的排练场，更是探讨六十年代文化与歌词深度的精神沙龙。</p>
+                <a class="card-btn">查看演出日程</a>
+            </div>
+            <div class="card">
+                <h3>《校园人物志》采编部</h3>
+                <p>由学生主导的独立媒体矩阵。通过专业的四人采访团队分工，深度对话校长、计算机系教授及优秀校友，记录校园变迁背后的真实人物故事。</p>
+                <a class="card-btn">阅读往期访谈</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="admission" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">招生办</h2>
+            <span class="section-subtitle">加入我们的学术共同体</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>本科生申请指南</h3>
+                <p>我们寻找具有强烈求知欲和独特视角的开拓者。我们看重你解决复杂几何题的执着，也珍视你尝试用代码构建游戏世界的创意。在这里，录取不仅看分数，更看你的潜力。</p>
+                <a class="card-btn">开始申请之旅</a>
+            </div>
+            <div class="card">
+                <h3>校园开放日与面试</h3>
+                <p>获取本年度学术面试的筹备建议，了解戴公大学对候选人表达能力与逻辑思辨的具体要求。</p>
+                <a class="card-btn">预约校园参观</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="students" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">在校学生门户</h2>
+            <span class="section-subtitle">Student Portal</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>教务与选课系统</h3>
+                <p>一键直达本学期课程表、学分管理及期末考务安排。当前已开放下学期 AP 理科及高阶编程选修课的预报名通道。</p>
+                <a class="card-btn">登录教务系统</a>
+            </div>
+            <div class="card">
+                <h3>竞赛备考资源库</h3>
+                <p>包含往年加拿大滑铁卢大学中高级数学竞赛真题解析，及校内物理竞赛集训队的线上题库，助力学子突破自我。</p>
+                <a class="card-btn">进入资源库</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faculty" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">教职工服务</h2>
+            <span class="section-subtitle">Faculty & Staff Resources</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>科研基金与国际合作</h3>
+                <p>获取最新的学术研究经费申请指南，包括本年度与海外顶尖学术机构（如 Stanford Center）联合开展的 AI 创新孵化项目申报入口。</p>
+                <a class="card-btn">进入科研管理平台</a>
+            </div>
+            <div class="card">
+                <h3>教学评估与行政审批</h3>
+                <p>在线处理学生成绩录入、课程大纲审核以及校园活动（如大型社团招新、名人讲座）的场地审批流程。</p>
+                <a class="card-btn">行政系统登录</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="families" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">家长与家庭</h2>
+            <span class="section-subtitle">Family Resources</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>财务与学费管理</h3>
+                <p>安全便捷地查看学生的账单明细、缴纳学费、了解奖学金与助学金的发放政策及申请进度。</p>
+                <a class="card-btn">前往财务中心</a>
+            </div>
+            <div class="card">
+                <h3>校园医疗与心理健康</h3>
+                <p>我们致力于保障每一位学子的身心健康。查看校医院的就诊时间表、医保政策以及全天候心理咨询预约服务。</p>
+                <a class="card-btn">健康服务指引</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="visitors" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">访客导览</h2>
+            <span class="section-subtitle">Visitor Information</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>校园地图与停车指引</h3>
+                <p>获取高清互动式校园地图，查找各学院大楼、图书馆及访客专属停车场的实时空位信息。</p>
+                <a class="card-btn">查看互动地图</a>
+            </div>
+            <div class="card">
+                <h3>本周校园特展</h3>
+                <p>人文展览：“从文字到影像——东亚古典文学的历史映像”。展览地点：戴公大学主图书馆一楼大厅，免费向公众开放。</p>
+                <a class="card-btn">获取电子门票</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="alumni" class="content-section">
+        <div class="section-header">
+            <h2 class="section-title">校友网络</h2>
+            <span class="section-subtitle">Alumni Association</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>全球校友名录与互助</h3>
+                <p>保持联系，拓展人脉。从科技互联网高管到独立音乐人，我们的校友遍布各行各业。加入专属微信/领英群组，参与区域校友会活动。</p>
+                <a class="card-btn">更新校友信息</a>
+            </div>
+            <div class="card">
+                <h3>校园导师与返校日</h3>
+                <p>欢迎学长学姐重返母校！您可以通过此平台报名成为在校生的职业规划导师，或接受校学生媒体的“回望初心”深度专访。</p>
+                <a class="card-btn">报名返校活动</a>
+            </div>
+        </div>
+    </section>
 
     <script>
-        function login() {
-            // 这里是一段非常简单的伪装逻辑
-            alert("系统维护中：当前为选课高峰期，请稍后再试！");
+        function showSection(sectionId) {
+            // 隐藏所有内容板块
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // 移除所有导航按钮的激活状态（包括主导航和顶部服务导航）
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+
+            // 显示目标板块并激活对应导航按钮
+            const targetSection = document.getElementById(sectionId);
+            const targetNav = document.getElementById('nav-' + sectionId);
+            
+            if (targetSection) targetSection.classList.add('active');
+            if (targetNav) targetNav.classList.add('active');
+            
+            // 每次切换内容时，平滑向下滚动至内容区上方
+            window.scrollTo({
+                top: document.querySelector('.hero').offsetHeight - 80,
+                behavior: 'smooth'
+            });
         }
     </script>
-
 </body>
 </html>
