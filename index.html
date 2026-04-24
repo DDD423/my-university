@@ -512,6 +512,338 @@
             }
         }
 
+        /* ================= 科研基金与国际合作弹窗 ================= */
+        #research-fund-modal .modal-content.research-fund-modal-content {
+            max-width: min(1120px, 96vw);
+            width: 100%;
+            padding: 2.25rem 2.5rem 2rem;
+        }
+        #research-fund-modal h2 {
+            color: #8c1515;
+            border-bottom: 2px solid #8c1515;
+            padding-bottom: 10px;
+            margin-bottom: 0.35rem;
+            font-size: 1.55rem;
+        }
+        .research-fund-sub {
+            color: #666;
+            font-size: 0.92rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.55;
+        }
+        .research-account-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.35rem;
+            padding: 1rem 1.15rem;
+            background: linear-gradient(135deg, #faf6f6 0%, #f3f0f0 100%);
+            border: 1px solid rgba(140, 21, 21, 0.18);
+            border-radius: 8px;
+        }
+        .research-account-bar strong {
+            display: block;
+            font-size: 0.78rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.25rem;
+        }
+        .research-account-bar .acct-val {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-variant-numeric: tabular-nums;
+        }
+        .research-account-bar .acct-val.highlight {
+            color: #8c1515;
+        }
+        .research-account-note {
+            font-size: 0.86rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            padding: 0.75rem 1rem;
+            background: #fff;
+            border-left: 4px solid #8c1515;
+            border-radius: 0 6px 6px 0;
+        }
+        .fund-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .fund-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .fund-agency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.75rem;
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 2px;
+            margin-bottom: 1rem;
+        }
+        .fund-agency-card {
+            border: 1px solid #e4e4e4;
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            background: #fafafa;
+            cursor: pointer;
+            text-align: left;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+        .fund-agency-card:hover {
+            border-color: #8c1515;
+            box-shadow: 0 4px 12px rgba(140, 21, 21, 0.08);
+        }
+        .fund-agency-card.selected {
+            border-color: #8c1515;
+            background: #fff8f8;
+            box-shadow: 0 0 0 1px rgba(140, 21, 21, 0.2);
+        }
+        .fund-agency-card h4 {
+            font-size: 0.98rem;
+            color: #1a1a1a;
+            margin-bottom: 0.35rem;
+            line-height: 1.35;
+        }
+        .fund-agency-card .fund-range {
+            font-size: 0.82rem;
+            color: #8c1515;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        .fund-agency-card .fund-use {
+            font-size: 0.78rem;
+            color: #555;
+            line-height: 1.45;
+        }
+        .fund-form-panel {
+            border: 1px solid #ececec;
+            border-radius: 8px;
+            padding: 1.1rem 1.15rem;
+            background: #fff;
+        }
+        .fund-form-panel .input-group {
+            margin-bottom: 1rem;
+        }
+        .fund-form-panel .input-group label {
+            font-size: 0.85rem;
+        }
+        .fund-channel-hint {
+            font-size: 0.82rem;
+            color: #666;
+            margin-top: 0.35rem;
+            line-height: 1.5;
+        }
+        .fund-channel-hint.fixed {
+            color: #2d6a4f;
+            font-weight: 600;
+        }
+        .fund-history-wrap {
+            margin-top: 1.25rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+        .fund-history-wrap h3 {
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 0.65rem;
+        }
+        .fund-table-wrap {
+            overflow-x: auto;
+            max-height: 240px;
+            overflow-y: auto;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+        }
+        .fund-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .fund-table th,
+        .fund-table td {
+            padding: 0.5rem 0.65rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .fund-table th {
+            background: #f7f7f7;
+            color: #555;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        .fund-status-approved { color: #2d6a4f; font-weight: 600; }
+        .fund-status-rejected { color: #9d0208; font-weight: 600; }
+        .fund-status-pending { color: #856404; font-weight: 600; }
+
+        /* ================= 教务评议与人事系统弹窗 ================= */
+        #faculty-eval-modal .modal-content.faculty-eval-modal-content {
+            max-width: min(1000px, 96vw);
+            width: 100%;
+            padding: 2.25rem 2.5rem 2rem;
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+        #faculty-eval-modal h2 {
+            color: #8c1515;
+            border-bottom: 2px solid #8c1515;
+            padding-bottom: 10px;
+            margin-bottom: 0.35rem;
+            font-size: 1.5rem;
+        }
+        .faculty-eval-sub {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.55;
+        }
+        .faculty-eval-note {
+            font-size: 0.86rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            padding: 0.75rem 1rem;
+            background: #fafafa;
+            border-left: 4px solid #8c1515;
+            border-radius: 0 6px 6px 0;
+        }
+        .faculty-eval-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+        .faculty-eval-card {
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+        .faculty-eval-card .fe-top {
+            display: flex;
+            gap: 1rem;
+            padding: 1.1rem 1.15rem 0.85rem;
+            align-items: flex-start;
+        }
+        .fe-photo-wrap {
+            flex-shrink: 0;
+            width: 96px;
+            height: 96px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #eee;
+            border: 1px solid #e0e0e0;
+        }
+        .fe-photo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .fe-photo-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #8c1515 0%, #c94a4a 100%);
+            font-family: Georgia, serif;
+        }
+        .fe-head h3 {
+            font-size: 1.12rem;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+            line-height: 1.35;
+        }
+        .fe-head h3 span {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #8c1515;
+        }
+        .fe-unit {
+            font-size: 0.82rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .fe-bio {
+            padding: 0 1.15rem 0.85rem;
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.65;
+            text-align: justify;
+            flex-grow: 1;
+        }
+        .fe-rate {
+            padding: 0.85rem 1.15rem 1rem;
+            border-top: 1px solid #f0f0f0;
+            background: #fafafa;
+        }
+        .fe-rate label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.45rem;
+        }
+        .fe-rate-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        .fe-range {
+            flex: 1;
+            min-width: 120px;
+            accent-color: #8c1515;
+        }
+        .fe-score-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #8c1515;
+            min-width: 2.2rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .fe-save-btn {
+            padding: 0.45rem 0.95rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #8c1515;
+            background: #8c1515;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .fe-save-btn:hover {
+            background: #6a0f0f;
+            border-color: #6a0f0f;
+        }
+        .fe-hint {
+            font-size: 0.78rem;
+            color: #888;
+            min-height: 1.2em;
+        }
+        .fe-hint.saved {
+            color: #2d6a4f;
+            font-weight: 600;
+        }
+
         /* ================= 学术概览详情弹窗 ================= */
         .academic-detail-content {
             max-width: 860px;
@@ -811,13 +1143,13 @@
         <div class="grid">
             <div class="card">
                 <h3>科研基金与国际合作</h3>
-                <p>获取最新的国家级与国际学术研究经费（如 NSF 基金）的申请指南，以及管理跨国联合实验室的行政支持与申报入口。</p>
-                <a class="card-btn restricted-btn" data-original-text="进入科研管理平台" onclick="handleRestrictedAction(event)">进入科研管理平台</a>
+                <p>对接国家自然科学基金、国家重点研发计划、欧盟 Horizon、NSF、亚开行等多类资助方；单笔额度可达千万级人民币（或等值外币折算）。区分<strong>竞争性纵向/国际合作并联备案</strong>与<strong>戴公校级固定资助备案</strong>两类通道；凡提交合规申请均<strong>予以通过</strong>，金额直接计入与学号绑定的<strong>学术资金账户</strong>。</p>
+                <a class="card-btn" onclick="openResearchFundModal()">进入科研基金与国际合作平台</a>
             </div>
             <div class="card">
                 <h3>教务评议与人事系统</h3>
-                <p>供全职教职员工在线处理教学大纲审核、学术评议会决议追踪、以及人力资源与晋升（Tenure-track）相关审批流程。</p>
-                <a class="card-btn restricted-btn" data-original-text="行政系统登录" onclick="handleRestrictedAction(event)">行政系统登录</a>
+                <p>在线查阅任课教师档案，完成<strong>教务端综合评议</strong>：每位教师均有独立介绍，并支持以 <strong>1–10 分</strong> 保存至与学号绑定的评议记录（本机演示存储）。</p>
+                <a class="card-btn" onclick="openFacultyEvalModal()">进入教务评议与人事系统</a>
             </div>
         </div>
     </section>
@@ -1087,6 +1419,87 @@
         </div>
     </div>
 
+    <!-- 科研基金与国际合作（按学号隔离账户） -->
+    <div id="research-fund-modal" class="modal-overlay">
+        <div class="modal-content research-fund-modal-content">
+            <span class="close-btn" onclick="closeResearchFundModal()">&times;</span>
+            <h2>科研基金与国际合作</h2>
+            <p class="research-fund-sub">Research Grants &amp; International Programs · 学术经费申报与到账查询（演示数据仅存于本机浏览器）</p>
+
+            <div class="research-account-bar">
+                <div>
+                    <strong>学生学术资金账户（学号 / NetID）</strong>
+                    <span class="acct-val highlight" id="fund-display-username">—</span>
+                </div>
+                <div>
+                    <strong>累计已到账（获批合计）</strong>
+                    <span class="acct-val highlight" id="fund-display-balance">¥ 0</span>
+                </div>
+                <div>
+                    <strong>申报记录条数</strong>
+                    <span class="acct-val" id="fund-display-count">0</span>
+                </div>
+            </div>
+            <p class="research-account-note">说明：本页账户与当前登录学号一一对应，不同账号进入将看到各自独立的额度与记录。凡在本平台提交的合规申请<strong>一律通过</strong>，对应金额<strong>全部计入</strong>「累计已到账」学术资金账户。</p>
+
+            <div class="fund-layout">
+                <div>
+                    <h3 style="font-size:1.05rem;color:#333;margin-bottom:0.5rem;">资助方与资金用途（点选一项后于右侧填报）</h3>
+                    <div class="fund-agency-grid" id="fund-agency-grid"></div>
+                    <div class="fund-history-wrap">
+                        <h3>申报与到账记录</h3>
+                        <div class="fund-table-wrap">
+                            <table class="fund-table">
+                                <thead>
+                                    <tr>
+                                        <th>时间</th>
+                                        <th>资助方</th>
+                                        <th>通道</th>
+                                        <th>金额</th>
+                                        <th>资金用途摘要</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fund-history-body"></tbody>
+                            </table>
+                        </div>
+                        <p id="fund-history-empty" style="display:none;font-size:0.88rem;color:#888;margin-top:0.5rem;">暂无申报记录。请在右侧提交首笔申请。</p>
+                    </div>
+                </div>
+                <div class="fund-form-panel">
+                    <div class="input-group">
+                        <label>申报通道</label>
+                        <select id="fund-channel" onchange="onFundChannelChange()">
+                            <option value="competitive">竞争性纵向 / 国际合作（并联备案，提交即通过并入账）</option>
+                            <option value="fixed">戴公校级固定资助备案（提交即通过并入账）</option>
+                        </select>
+                        <p class="fund-channel-hint fixed" id="fund-channel-hint">凡材料与金额在资助方规定范围内，提交后即视为审批通过，金额全额计入当前学号的学术资金账户。</p>
+                    </div>
+                    <div class="input-group">
+                        <label>申请金额（人民币元，须在资助方区间内）</label>
+                        <input type="number" id="fund-amount" min="0" step="10000" placeholder="例如：5200000">
+                    </div>
+                    <div class="input-group">
+                        <label>本项目资金用途说明（将写入申报档案）</label>
+                        <textarea id="fund-purpose-note" rows="4" placeholder="例如：用于购置低温量子测控前端模块、支付合作方开放获取论文 APC、以及课题组赴日内瓦联合实验差旅。"></textarea>
+                    </div>
+                    <button type="button" class="submit-btn" id="fund-submit-btn" onclick="submitResearchFundApplication()">提交申报</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 教务评议与人事系统（教师档案 + 1–10 分，按学号存储） -->
+    <div id="faculty-eval-modal" class="modal-overlay">
+        <div class="modal-content faculty-eval-modal-content">
+            <span class="close-btn" onclick="closeFacultyEvalModal()">&times;</span>
+            <h2>教务评议与人事系统</h2>
+            <p class="faculty-eval-sub">Academic Review &amp; HR · 任课教师档案与综合评议打分</p>
+            <p class="faculty-eval-note">说明：下列为戴公大学在岗教师代表名录。请阅读简介后拖动滑块给出 <strong>1–10 分</strong> 综合评议，并点击「保存」写入当前登录学号的评议档案。数据仅保存在本机浏览器。</p>
+            <div class="faculty-eval-grid" id="faculty-eval-grid"></div>
+        </div>
+    </div>
+
     <!-- 录取通知书弹窗 -->
     <div id="letter-modal" class="modal-overlay">
         <div class="admission-letter-content">
@@ -1110,6 +1523,83 @@
         // ================= 全局变量：用于判定登录状态 =================
         let currentUser = null;
         let chatInterval = null;
+        let selectedFundAgencyId = null;
+
+        /** 科研基金资助方：大额区间 + 官方用途说明；channels 控制出现在竞争性还是固定通道 */
+        const RESEARCH_FUND_AGENCIES = [
+            { id: "nsfc-joint", name: "国家自然科学基金委员会 · 戴公联合研究专项", min: 2800000, max: 8500000, channels: ["competitive"],
+                purpose: "资助原创性基础研究、重大科研仪器开放共享机时、博士后/博士研究生助研津贴，以及符合国家自然科学基金管理规定的间接费用与绩效支出。" },
+            { id: "moe-major", name: "教育部 · 哲学社会科学研究重大课题攻关（协同创新中心）", min: 3200000, max: 12000000, channels: ["competitive"],
+                purpose: "专项用于大型数据库与语料库建设、跨国比较田野调查、国际学术会议与工作坊、以及成果外译与出版资助。" },
+            { id: "most-youth", name: "科学技术部 · 国家重点研发计划（青年科学家项目）", min: 4500000, max: 15000000, channels: ["competitive"],
+                purpose: "关键技术验证与中试验证、标准与计量体系建设、小试生产线改造、以及符合国家重点研发计划资金管理办法的设备与材料费。" },
+            { id: "horizon-hub", name: "欧盟 Horizon Europe · 戴公大学伙伴枢纽子计划", min: 6000000, max: 22000000, channels: ["competitive"],
+                purpose: "跨国联合团队差旅与驻访、开放获取论文 APC、研究伦理与数据合规审查、多语言科普与政策简报产出。" },
+            { id: "nsf-oac", name: "美国国家科学基金会 NSF · 开放协作与可信科学（OAC）海外子课题", min: 5500000, max: 18000000, channels: ["competitive"],
+                purpose: "大规模科学计算与开源软件生态建设、可重复性实验包与容器化环境、国际数据托管与长期保存服务费用。" },
+            { id: "adb-he", name: "亚洲开发银行 ADB · 高等教育创新与绿色校园子基金", min: 8000000, max: 35000000, channels: ["competitive"],
+                purpose: "校园能源数字孪生与碳核算平台、发展中国家交换生津贴、气候适应型实验室改造示范工程。" },
+            { id: "miit-reind", name: "工业和信息化部 · 产业基础再造与制造业高质量发展专项", min: 10000000, max: 45000000, channels: ["competitive"],
+                purpose: "首台套样机试制与小批量验证、可靠性试验与检测认证、核心专利族布局与海外同族申请费用。" },
+            { id: "hk-rgc", name: "香港研究资助局 RGC · 内地—香港联合科研计划（戴公通道）", min: 7000000, max: 28000000, channels: ["competitive"],
+                purpose: "联合实验室共建、大型装置远程实验机时、双语人才联合培养与跨境数据安全治理咨询。" },
+            { id: "jsps-bi", name: "日本学术振兴会 JSPS · 双边合作项目（戴公对口学科）", min: 5000000, max: 19000000, channels: ["competitive"],
+                purpose: "日中学者互访与共同指导、先进表征与计算合作、青年研究员短期驻地（含生活补贴与保险）。" },
+            { id: "who-tropical", name: "世界卫生组织合作中心 · 热带病与全球卫生研究专项（多边信托基金）", min: 4200000, max: 16000000, channels: ["competitive"],
+                purpose: "现场流行病学调查、疫苗与药物有效性真实世界研究、低收入国家社区干预试点与伦理委员会运行经费。" },
+            { id: "dg-fixed", name: "戴公大学科研院 · 校级固定资助备案（校内单列）", min: 800000, max: 2400000, channels: ["fixed"],
+                purpose: "导师学术指导与外聘讲学、实验室耗材与易损件、短期境外合作访问与小型研讨会；本通道为校内备案制，提交即视为通过并计入学术资金账户。" }
+        ];
+
+        /** 教务评议：教师名录（简介 + 1–10 分评议，按学号存 localStorage） */
+        const FACULTY_EVAL_ROSTER = [
+            {
+                id: "jason",
+                displayName: "Jason",
+                title: "教授、博士生导师",
+                unit: "理学院 · 物理系",
+                courseLine: "主讲《量子力学高阶》",
+                photo: "Jason.jpg",
+                bio: "Jason 教授长期从事开放量子系统与量子信息基础研究，主持多项国家级与校级联合课题。课堂以推导严谨、例题梯度清晰著称，鼓励学生进入课题组参与量子线路与噪声表征方向的动手实验；在教务评议会中多次获评「学生科研参与度」标杆课程负责人。"
+            },
+            {
+                id: "laoyu",
+                displayName: "Laoyu",
+                title: "副教授、聚变能源研究中心骨干",
+                unit: "工学院 · 核工程与等离子体科学系",
+                courseLine: "主讲《核聚变物理》",
+                photo: "Laoyu.png",
+                bio: "Laoyu 老师聚焦磁约束聚变等离子体输运与不稳定性控制，与国内外装置合作密切。教学上强调工程直觉与数值仿真并重，课程项目常对接真实装置参数区间；人事档案记载其连续三学期承担跨学院联合工作坊协调人，擅长带领本科生完成从文献综述到仿真报告的全流程训练。"
+            },
+            {
+                id: "yancy",
+                displayName: "Yancy",
+                title: "讲师、创意食品与品牌设计实验室主任",
+                unit: "生命科学与设计学院 · 食品创新方向",
+                courseLine: "主讲《黄桃罐头设计与制作》",
+                photo: "Yancy.jpg",
+                bio: "Yancy 将食品工程与品牌叙事、包装设计打通，课堂以「从果园到货架」全链路项目制闻名。注重安全规范与感官评价方法训练，与校园创意食品孵化计划对接；在人事系统中标注为「跨学科课程建设」试点教师，擅长指导学生将工艺参数转化为可路演的产品故事。"
+            },
+            {
+                id: "shen-zhilan",
+                displayName: "沈知澜",
+                title: "副教授、古典文献与数字人文交叉方向",
+                unit: "文学院 · 中文系",
+                courseLine: "开设《数字人文与古典目录学》",
+                photo: "",
+                bio: "沈知澜副教授专治版本学与东亚写本文化，近年牵头建设戴公大学古籍影像与标注数据库，推动 OCR 纠错众包与研究生工作坊制度化。教学风格沉稳细致，评议材料显示其对学生论文引用规范与史料互证要求极高，并长期担任学院教学委员会委员。"
+            },
+            {
+                id: "morgan-whitfield",
+                displayName: "Morgan Whitfield",
+                title: "Senior Lecturer（高级讲师）",
+                unit: "国际通识教育学院 · 批判性思维与学术写作中心",
+                courseLine: "共同授课《学术英语与全球议题研讨》",
+                photo: "",
+                bio: "Morgan Whitfield 拥有牛津大学教育语言学背景，负责全校非母语学生的学术写作支持与反抄袭工作坊设计。人事记录突出其在跨文化课堂管理、形成性评价量表设计方面的经验；与教务办合作修订了戴公英文课程大纲模板，强调 rubric 透明化与同伴互评的可执行性。"
+            }
+        ];
+
         const COURSE_CATALOG = {
             "quantum-jason-advanced": {
                 id: "quantum-jason-advanced",
@@ -1202,6 +1692,14 @@
         function closeProfileModal() { document.getElementById('profile-modal').style.display = 'none'; }
         function closeRosterModal() { document.getElementById('roster-modal').style.display = 'none'; }
         function closeCourseModal() { document.getElementById('course-modal').style.display = 'none'; }
+        function closeResearchFundModal() {
+            const el = document.getElementById('research-fund-modal');
+            if (el) el.style.display = 'none';
+        }
+        function closeFacultyEvalModal() {
+            const el = document.getElementById('faculty-eval-modal');
+            if (el) el.style.display = 'none';
+        }
         function closeChatModal() {
             document.getElementById('chat-modal').style.display = 'none';
             clearInterval(chatInterval);
@@ -1827,6 +2325,318 @@
             openSiteDetail(detailKey);
         }
 
+        // ================= 科研基金与国际合作（按学号隔离） =================
+        function formatResearchCNY(n) {
+            const v = Number(n) || 0;
+            return "¥ " + v.toLocaleString("zh-CN");
+        }
+
+        function getResearchFundStorageKey() {
+            const u = getCurrentUsername();
+            return u ? "daigong_research_fund_" + u : "";
+        }
+
+        function loadResearchFundState() {
+            const key = getResearchFundStorageKey();
+            if (!key) return { balance: 0, applications: [] };
+            const raw = localStorage.getItem(key);
+            if (!raw) return { balance: 0, applications: [] };
+            try {
+                const o = JSON.parse(raw);
+                return {
+                    balance: typeof o.balance === "number" ? o.balance : 0,
+                    applications: Array.isArray(o.applications) ? o.applications : []
+                };
+            } catch (e) {
+                return { balance: 0, applications: [] };
+            }
+        }
+
+        function saveResearchFundState(state) {
+            const key = getResearchFundStorageKey();
+            if (!key) return;
+            localStorage.setItem(key, JSON.stringify(state));
+        }
+
+        function getFundAgenciesForChannel(channel) {
+            return RESEARCH_FUND_AGENCIES.filter(function (a) {
+                return a.channels.indexOf(channel) !== -1;
+            });
+        }
+
+        function getFundAgencyById(id) {
+            for (let i = 0; i < RESEARCH_FUND_AGENCIES.length; i++) {
+                if (RESEARCH_FUND_AGENCIES[i].id === id) return RESEARCH_FUND_AGENCIES[i];
+            }
+            return null;
+        }
+
+        function onFundChannelChange() {
+            const ch = document.getElementById("fund-channel").value;
+            const hint = document.getElementById("fund-channel-hint");
+            if (hint) {
+                hint.className = "fund-channel-hint fixed";
+                if (ch === "fixed") {
+                    hint.innerText = "校级固定资助备案：提交后即视为通过，申请金额全额计入当前学号的学术资金账户。";
+                } else {
+                    hint.innerText = "纵向与国际合作并联备案：与所选资助方口径一致即予通过，申请金额全额计入当前学号的学术资金账户。";
+                }
+            }
+            const list = getFundAgenciesForChannel(ch);
+            selectedFundAgencyId = list.length ? list[0].id : null;
+            renderFundAgencyGrid();
+            syncFundAmountPlaceholder();
+        }
+
+        function selectFundAgency(agencyId) {
+            selectedFundAgencyId = agencyId;
+            renderFundAgencyGrid();
+            syncFundAmountPlaceholder();
+        }
+
+        function syncFundAmountPlaceholder() {
+            const input = document.getElementById("fund-amount");
+            const ag = selectedFundAgencyId ? getFundAgencyById(selectedFundAgencyId) : null;
+            if (!input) return;
+            if (ag) {
+                input.min = ag.min;
+                input.max = ag.max;
+                input.placeholder = "区间 " + formatResearchCNY(ag.min) + " — " + formatResearchCNY(ag.max);
+            } else {
+                input.removeAttribute("min");
+                input.removeAttribute("max");
+                input.placeholder = "";
+            }
+        }
+
+        function renderFundAgencyGrid() {
+            const grid = document.getElementById("fund-agency-grid");
+            if (!grid) return;
+            const ch = document.getElementById("fund-channel").value;
+            const list = getFundAgenciesForChannel(ch);
+            grid.innerHTML = "";
+            if (!list.length) return;
+            if (!selectedFundAgencyId || !getFundAgencyById(selectedFundAgencyId) || getFundAgencyById(selectedFundAgencyId).channels.indexOf(ch) === -1) {
+                selectedFundAgencyId = list[0].id;
+            }
+            list.forEach(function (a) {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "fund-agency-card" + (selectedFundAgencyId === a.id ? " selected" : "");
+                btn.onclick = function () { selectFundAgency(a.id); };
+                btn.innerHTML =
+                    "<h4>" + escapeHtml(a.name) + "</h4>" +
+                    "<div class=\"fund-range\">建议申请额度 " + formatResearchCNY(a.min) + " — " + formatResearchCNY(a.max) + "</div>" +
+                    "<div class=\"fund-use\"><strong>资金用途（资助方规定）</strong>：" + escapeHtml(a.purpose) + "</div>";
+                grid.appendChild(btn);
+            });
+        }
+
+        function renderFundHistoryTable() {
+            const tbody = document.getElementById("fund-history-body");
+            const empty = document.getElementById("fund-history-empty");
+            if (!tbody) return;
+            const state = loadResearchFundState();
+            const rows = (state.applications || []).slice().reverse();
+            tbody.innerHTML = "";
+            if (!rows.length) {
+                if (empty) empty.style.display = "block";
+                return;
+            }
+            if (empty) empty.style.display = "none";
+            rows.forEach(function (r) {
+                const tr = document.createElement("tr");
+                const chLabel = r.channel === "fixed" ? "固定备案" : "竞争性";
+                let statusClass = "fund-status-pending";
+                let statusText = r.status === "approved" ? "已获批 / 已入账" : (r.status === "rejected" ? "未获批" : "审核中");
+                if (r.status === "approved") statusClass = "fund-status-approved";
+                if (r.status === "rejected") statusClass = "fund-status-rejected";
+                tr.innerHTML =
+                    "<td>" + escapeHtml(r.time || "") + "</td>" +
+                    "<td>" + escapeHtml(r.agencyName || "") + "</td>" +
+                    "<td>" + escapeHtml(chLabel) + "</td>" +
+                    "<td>" + escapeHtml(formatResearchCNY(r.amount)) + "</td>" +
+                    "<td>" + escapeHtml((r.purposeNote || "").slice(0, 42)) + (r.purposeNote && r.purposeNote.length > 42 ? "…" : "") + "</td>" +
+                    "<td><span class=\"" + statusClass + "\">" + escapeHtml(statusText) + "</span></td>";
+                tbody.appendChild(tr);
+            });
+        }
+
+        function refreshResearchFundAccountBar() {
+            const state = loadResearchFundState();
+            const nameEl = document.getElementById("fund-display-username");
+            const balEl = document.getElementById("fund-display-balance");
+            const cntEl = document.getElementById("fund-display-count");
+            if (nameEl) nameEl.innerText = getCurrentUsername() || "—";
+            if (balEl) balEl.innerText = formatResearchCNY(state.balance);
+            if (cntEl) cntEl.innerText = String((state.applications || []).length);
+        }
+
+        function openResearchFundModal() {
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+            const chSel = document.getElementById("fund-channel");
+            if (chSel && !chSel.value) chSel.value = "competitive";
+            onFundChannelChange();
+            refreshResearchFundAccountBar();
+            renderFundHistoryTable();
+            document.getElementById("research-fund-modal").style.display = "flex";
+        }
+
+        function submitResearchFundApplication() {
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+            const channel = document.getElementById("fund-channel").value;
+            const agency = getFundAgencyById(selectedFundAgencyId);
+            const amountRaw = document.getElementById("fund-amount").value;
+            const purposeNote = (document.getElementById("fund-purpose-note").value || "").trim();
+            const amount = parseInt(amountRaw, 10);
+
+            if (!agency || agency.channels.indexOf(channel) === -1) {
+                alert("请选择与申报通道匹配的资助方。");
+                return;
+            }
+            if (!purposeNote) {
+                alert("请填写本项目资金用途说明。");
+                return;
+            }
+            if (!Number.isFinite(amount) || amount < agency.min || amount > agency.max) {
+                alert("申请金额须在「" + agency.name + "」的建议区间内：\n" + formatResearchCNY(agency.min) + " — " + formatResearchCNY(agency.max));
+                return;
+            }
+
+            const state = loadResearchFundState();
+            const status = "approved";
+            const reviewNote = channel === "fixed" ? "校级固定资助备案通过" : "纵向/国际合作并联备案通过";
+
+            const rec = {
+                id: "rf_" + Date.now(),
+                time: new Date().toLocaleString("zh-CN", { hour12: false }),
+                agencyId: agency.id,
+                agencyName: agency.name,
+                channel: channel,
+                amount: amount,
+                purposeNote: purposeNote,
+                status: status,
+                reviewNote: reviewNote
+            };
+            state.applications.push(rec);
+            state.balance = (state.balance || 0) + amount;
+            saveResearchFundState(state);
+
+            refreshResearchFundAccountBar();
+            renderFundHistoryTable();
+
+            alert("申报结果：" + reviewNote + "\n金额 " + formatResearchCNY(amount) + " 已计入学号「" + getCurrentUsername() + "」的学术资金账户。");
+        }
+
+        // ================= 教务评议与人事系统（教师介绍 + 1–10 分） =================
+        function getFacultyEvalStorageKey() {
+            const u = getCurrentUsername();
+            return u ? "daigong_faculty_eval_scores_" + u : "";
+        }
+
+        function loadFacultyEvalScores() {
+            const key = getFacultyEvalStorageKey();
+            if (!key) return {};
+            const raw = localStorage.getItem(key);
+            if (!raw) return {};
+            try {
+                const o = JSON.parse(raw);
+                return o && typeof o === "object" && o.scores && typeof o.scores === "object" ? o.scores : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveFacultyEvalScores(scores) {
+            const key = getFacultyEvalStorageKey();
+            if (!key) return;
+            localStorage.setItem(key, JSON.stringify({
+                scores: scores,
+                updatedAt: new Date().toISOString()
+            }));
+        }
+
+        function updateFeRangeDisplay(teacherId) {
+            const r = document.getElementById("fe-range-" + teacherId);
+            const v = document.getElementById("fe-val-" + teacherId);
+            if (r && v) v.innerText = r.value;
+        }
+
+        function saveFacultyEvalScore(teacherId) {
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+            const r = document.getElementById("fe-range-" + teacherId);
+            const hint = document.getElementById("fe-hint-" + teacherId);
+            if (!r) return;
+            const n = parseInt(r.value, 10);
+            if (!Number.isFinite(n) || n < 1 || n > 10) return;
+            const all = loadFacultyEvalScores();
+            all[teacherId] = n;
+            saveFacultyEvalScores(all);
+            if (hint) {
+                hint.className = "fe-hint saved";
+                hint.innerText = "已保存：学号「" + getCurrentUsername() + "」对该教师的综合评议为 " + n + " / 10 分。";
+            }
+        }
+
+        function renderFacultyEvalCards() {
+            const grid = document.getElementById("faculty-eval-grid");
+            if (!grid) return;
+            const saved = loadFacultyEvalScores();
+            grid.innerHTML = "";
+            FACULTY_EVAL_ROSTER.forEach(function (t) {
+                const initial = (t.displayName || "?").charAt(0);
+                const hasPhoto = t.photo && String(t.photo).length > 0;
+                const savedVal = saved[t.id];
+                const defaultVal = Number.isFinite(savedVal) && savedVal >= 1 && savedVal <= 10 ? savedVal : 7;
+
+                const card = document.createElement("div");
+                card.className = "faculty-eval-card";
+
+                const photoInner = hasPhoto
+                    ? "<img src=\"" + escapeHtml(t.photo) + "\" alt=\"" + escapeHtml(t.displayName) + "\">"
+                    : "<div class=\"fe-photo-ph\" aria-hidden=\"true\">" + escapeHtml(initial) + "</div>";
+
+                card.innerHTML =
+                    "<div class=\"fe-top\">" +
+                    "<div class=\"fe-photo-wrap\">" + photoInner + "</div>" +
+                    "<div class=\"fe-head\">" +
+                    "<h3>" + escapeHtml(t.displayName) + " <span>" + escapeHtml(t.title) + "</span></h3>" +
+                    "<div class=\"fe-unit\">" + escapeHtml(t.unit) + "<br>" + escapeHtml(t.courseLine) + "</div>" +
+                    "</div></div>" +
+                    "<div class=\"fe-bio\">" + escapeHtml(t.bio) + "</div>" +
+                    "<div class=\"fe-rate\">" +
+                    "<label for=\"fe-range-" + escapeHtml(t.id) + "\">综合评议打分（1–10 分）</label>" +
+                    "<div class=\"fe-rate-row\">" +
+                    "<input type=\"range\" class=\"fe-range\" id=\"fe-range-" + escapeHtml(t.id) + "\" min=\"1\" max=\"10\" step=\"1\" value=\"" + defaultVal + "\" oninput=\"updateFeRangeDisplay('" + escapeHtml(t.id) + "')\">" +
+                    "<span class=\"fe-score-val\" id=\"fe-val-" + escapeHtml(t.id) + "\">" + defaultVal + "</span>" +
+                    "<button type=\"button\" class=\"fe-save-btn\" onclick=\"saveFacultyEvalScore('" + escapeHtml(t.id).replace(/'/g, "\\'") + "')\">保存评议</button>" +
+                    "</div>" +
+                    "<p class=\"fe-hint" + (Number.isFinite(savedVal) ? " saved" : "") + "\" id=\"fe-hint-" + escapeHtml(t.id) + "\">" +
+                    (Number.isFinite(savedVal) ? "上次已保存：" + savedVal + " / 10 分。可调整滑块后再次保存。" : "尚未保存过评议。") +
+                    "</p></div>";
+
+                grid.appendChild(card);
+            });
+        }
+
+        function openFacultyEvalModal() {
+            if (!currentUser) {
+                openLoginModal();
+                return;
+            }
+            renderFacultyEvalCards();
+            document.getElementById("faculty-eval-modal").style.display = "flex";
+        }
+
         // ================= 权限受限按钮控制（新增逻辑） =================
         // 如果未登录，点击会打开登录框；如果已登录，按钮变得不可用。
         function handleRestrictedAction(event) {
@@ -1901,6 +2711,14 @@
             const courseModal = document.getElementById('course-modal');
             if (courseModal && courseModal.style.display === 'flex') {
                 closeCourseModal();
+            }
+            const researchFundModal = document.getElementById('research-fund-modal');
+            if (researchFundModal && researchFundModal.style.display === 'flex') {
+                closeResearchFundModal();
+            }
+            const facultyEvalModal = document.getElementById('faculty-eval-modal');
+            if (facultyEvalModal && facultyEvalModal.style.display === 'flex') {
+                closeFacultyEvalModal();
             }
             const alumniSection = document.getElementById('alumni');
             if (alumniSection && alumniSection.classList.contains('active')) {
